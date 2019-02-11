@@ -12,7 +12,7 @@ dataset.
 
 ## Mobilenetv2 with Deeplabv3+
 
-This model is uses the mask from stage 1 and refines it. Pretrained on
+This model uses the mask from stage 1 and refines it. Pretrained on
 Pascal VOC 2012
 
 ## Install
