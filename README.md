@@ -2,6 +2,8 @@
 
 ![alt text][vinv]
 
+```* https://www.youtube.com/watch?v=Mh4f9AYRCZY&feature=youtu.be```
+
 ## Mask RCNN Stage 1 pipeline
 
 Mask RCNN is only run once every 15 frames or when the IOU does not reach 90%
@@ -32,6 +34,51 @@ On NVidia 1080Ti the above video is typically processed at 18fps.
 
 1. Improve performance.
 2. Continue experiments to replace Mask RCNN usage.
+
+## Citation
+
+*   Mask RCNN 
+```
+@misc{matterport_maskrcnn_2017,
+  title={Mask R-CNN for object detection and instance segmentation on Keras and TensorFlow},
+  author={Waleed Abdulla},
+  year={2017},
+  publisher={Github},
+  journal={GitHub repository},
+  howpublished={\url{https://github.com/matterport/Mask_RCNN}},
+}
+```
+*   DeepLabv3+:
+```
+@inproceedings{deeplabv3plus2018,
+  title={Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation},
+  author={Liang-Chieh Chen and Yukun Zhu and George Papandreou and Florian Schroff and Hartwig Adam},
+  booktitle={ECCV},
+  year={2018}
+}
+```
+
+
+*   MobileNetv2:
+```
+@inproceedings{mobilenetv22018,
+  title={MobileNetV2: Inverted Residuals and Linear Bottlenecks},
+  author={Mark Sandler and Andrew Howard and Menglong Zhu and Andrey Zhmoginov and Liang-Chieh Chen},
+  booktitle={CVPR},
+  year={2018}
+}
+```
+
+*   Deep Automatic Portrait Matting
+```
+@inproceedings{
+  title={Deep Automatic Portrait Matting},
+  author={Xiaoyong Shen, Xin Tao, Hongyun Gao, Chao Zhou, Jiaya Jia},
+  booktitle={ECCV},
+  year={2016}
+}
+```
+
 
 [mask]: https://github.com/geek101/focal/blob/master/data/readme/mask_rcnn_pipeline.jpeg "Stage1 Inference output"
 
