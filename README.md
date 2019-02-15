@@ -2,7 +2,7 @@
 
 ![alt text][vinv]
 
-```* https://www.youtube.com/watch?v=Mh4f9AYRCZY&feature=youtu.be```
+```* (original video)``` [https://www.youtube.com/watch?v=Mh4f9AYRCZY&feature=youtu.be](https://www.youtube.com/watch?v=Mh4f9AYRCZY&feature=youtu.be)
 
 ## Mask RCNN Stage 1 pipeline
 
