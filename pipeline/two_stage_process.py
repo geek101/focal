@@ -11,6 +11,7 @@ import cv2
 import tqdm
 import numpy as np
 
+
 class ProcessSM(object):
     def __init__(self, mask_rcnn_obj, deeplab_obj,
                  threshold=0.90,
@@ -41,7 +42,7 @@ class ProcessSM(object):
         if self._max_mask is None:
             r = self._mask_rcnn_obj.run(image, self._model_config)
             self._max_mask = self._mask_rcnn_obj.get_max_mask(
-                image, r, self._model_config['filter_class'])
+                r, self._model_config['filter_class'])
 
             if self._max_mask is None:
                 return image

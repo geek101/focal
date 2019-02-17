@@ -19,12 +19,12 @@ Pascal VOC 2012
 
 ## Install
 
-Run `install_deps.sh` after setting up a virtualenv.
-Run the test case `python test/test_two_stage.py` to verify setup.
+Run `$ sh install_deps.sh` after setting up a virtualenv.
+Run the test case `$ python test/test_two_stage.py` to verify setup.
 
 ## How to use
 
-`python pipeline/two_stage_run.py -m pretrained_models/mask_rcnn_coco.h5 -l /tmp/logs -d pretrained_models/deeplabv3_mnv2_pascal_train_aug_2018_01_29.tar.gz -i data/videos/bbc_video_youtube.mp4 -o data/videos/processed_bbc_video_youtube.mp4`
+`$ python pipeline/two_stage_run.py -m pretrained_models/mask_rcnn_coco.h5 -l /tmp/logs -d pretrained_models/deeplabv3_mnv2_pascal_train_aug_2018_01_29.tar.gz -i data/videos/bbc_video_youtube.mp4 -o data/videos/processed_bbc_video_youtube.mp4`
 
 ## Performance
 

@@ -11,6 +11,7 @@ dataset: http://web.mit.edu/torralba/www/indoor.html
 import glob
 import os
 
+
 def get_image_paths(prefix, suffix='jpg'):
     images_dir=os.path.join(prefix, '*/*.{}'.format(suffix))
     images_paths = glob.glob(images_dir)

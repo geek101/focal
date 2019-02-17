@@ -123,3 +123,5 @@ dmypy.json
 Mask_RCNN/
 pretrained_models/
 logs/
+
+.idea/

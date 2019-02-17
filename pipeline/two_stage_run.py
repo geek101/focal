@@ -15,6 +15,7 @@ from pipeline.deeplabv3_inference import DeepLabInference
 from pipeline.mrcnn_inference import MRCNNInference
 from pipeline.two_stage_process import ProcessSM
 
+
 def get_argparser():
     parser = argparse.ArgumentParser(description='Mask_RCNN Runner')
     parser.add_argument(
@@ -48,6 +49,7 @@ def get_argparser():
         help='Absolute path to file for video output.'
     )
     return parser
+
 
 def main(args):
     print(args)
@@ -100,7 +102,8 @@ def main(args):
     if diff_time > 0:
         fps = int(round(float(count) / diff_time, 0))
     logger.info('Frame count: {}, fps: {}'.format(count, fps))
-    
+
+
 if __name__ == "__main__":
     args = get_argparser().parse_args(sys.argv[1:])
     main(args)    

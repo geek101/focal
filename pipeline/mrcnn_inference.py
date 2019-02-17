@@ -5,9 +5,7 @@ Licensed under the MIT License (see LICENSE for details)
 
 import os
 import logging
-import numpy as np
 
-from mrcnn import utils
 import mrcnn.model as modellib
 from pipeline.coco import coco
 
@@ -77,7 +75,7 @@ class MRCNNInference(ModelInterface):
     def get_class_id(self, class_name):
         return self._class_idx_dict[class_name]
     
-    def get_max_mask(self, image, result, filter_class):
+    def get_max_mask(self, result, filter_class):
         boxes, masks, class_ids = result['rois'], result['masks'], \
                                   result['class_ids']
         max_square = None
@@ -99,4 +97,4 @@ class MRCNNInference(ModelInterface):
         results = self._model.detect([input_image])
         r = results[0]
         return r
-        
+
