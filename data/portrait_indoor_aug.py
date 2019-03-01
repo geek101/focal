@@ -11,10 +11,10 @@ dataset: http://web.mit.edu/torralba/www/indoor.html
 import random
 import scipy.ndimage
 import skimage.color
+import cv2
 import numpy as np
 
 from skimage.transform import warp, AffineTransform
-from utils.mrcnn_helper import resize_image
 
 
 def warp_helper(img, affine_t):
@@ -59,6 +59,9 @@ def shift_mask_corners(portrait_image, portrait_mask, shift_arg='none'):
     """
     aw = np.argwhere(portrait_mask != 0)
 
+    if len(aw) == 0:
+        return None, None
+    
     aw_col1 = aw[:, 1:]
     # print(aw_col1.reshape(aw_col1.shape[0]))
     # print('Min: {}'.format(aw_col1.min()))
@@ -131,23 +134,29 @@ def portrait_with_mask_resize_to_indoor(portrait_image_input,
 
     portrait_resized = portrait_image
     portrait_mask_resized = portrait_mask_input
-    if portrait_height > indoor_height or portrait_width > indoor_width:
-        height_diff = portrait_height - indoor_height
-        width_diff = portrait_width - indoor_width
-        resize_dim = indoor_height
-        if width_diff > height_diff:
-            resize_dim = indoor_width
+    portrait_ratio = float(portrait_image.shape[0])/portrait_image.shape[1]
 
-        portrait_resized = \
-        resize_image(portrait_image, min_dim=resize_dim, max_dim=resize_dim,
-                     mode="square")[0]
-        portrait_mask_resized = \
-        resize_image(portrait_mask_input, min_dim=resize_dim,
-                     max_dim=resize_dim, mode="square")[0]
+    # Fix height of portrait
+    new_height = portrait_height
+    new_width = portrait_width
+    if portrait_height > indoor_height:
+        new_height = indoor_height
+        new_width = round(indoor_height/portrait_ratio)
 
-    portrait_resized_height, portrait_resized_width = portrait_resized.shape[:2]
-    h_diff = indoor_height - portrait_resized_height
-    w_diff = indoor_width - portrait_resized_width
+    new_ratio = float(new_height)/new_width
+    if new_width > indoor_width:
+        new_width = indoor_width
+        new_height = round(new_width * new_ratio)
+
+    if new_height != portrait_height or new_width != portrait_width:
+        portrait_resized = cv2.resize(portrait_image,
+                                      (new_width, new_height),
+                                      interpolation=cv2.INTER_CUBIC)
+        portrait_mask_resized = cv2.resize(portrait_mask_resized,
+                                           (new_width, new_height),
+                                           interpolation=cv2.INTER_CUBIC)
+    h_diff = indoor_height - new_height
+    w_diff = indoor_width - new_width
 
     h_pad = (0, 0)
     if h_diff > 0:
@@ -178,6 +187,10 @@ def portrait_indoor_embed(portrait_image_input, portrait_mask_input,
     extra_padded, extra_padded_mask = shift_mask_corners(extra_padded,
                                                          extra_padded_mask,
                                                          shift_arg=shift_arg)
+
+    if extra_padded is None:
+        return None, None
+
     if shift_arg.strip().lower() != 'none' and random_affine:
         extra_padded, extra_padded_mask = random_affine_helper(
             extra_padded, extra_padded_mask, intensity=intensity,

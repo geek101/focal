@@ -59,7 +59,7 @@ class DeepLabInference(ModelInterface):
 
     def __init__(self, tarball_path):
         """Creates and loads pretrained deeplab model."""
-        self.logger = logging.getLogger('DeepLabInferencel')
+        self.logger = logging.getLogger('DeepLabInference')
         self._class_idx_dict = {}
         for i in range(0, len(DeepLabInference.LABEL_NAMES)):
             self._class_idx_dict[DeepLabInference.LABEL_NAMES[i]] = i
